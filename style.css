@@ -1,0 +1,610 @@
+/* ==========================================================================
+   HOJA DE ESTILOS - CHEJO TEC
+   ========================================================================== */
+
+:root {
+    --bg-main: #0a0f1d;
+    --bg-surface: #131c31;
+    --bg-card: #1b2744;
+    --primary: #00f2fe;
+    --secondary: #4facfe;
+    --accent-orange: #ff7b00;
+    --text-white: #ffffff;
+    --text-muted: #8fa0c2;
+    --whatsapp-color: #25d366;
+    --font-main: 'Poppins', sans-serif;
+    --font-heading: 'Orbitron', sans-serif;
+    --transition-fast: 0.3s ease;
+    --transition-slow: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* RESET GENERAL */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--text-white);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* FONDO ANIMADO DE CUBOS FLOTANTES (CSS PURO) */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.cube {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(0, 242, 254, 0.1);
+    transform: scale(0);
+    animation: cube-float 12s infinite linear;
+    bottom: -50px;
+}
+
+.cube:nth-child(1) { left: 10%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 10s; }
+.cube:nth-child(2) { left: 40%; width: 30px; height: 30px; animation-delay: 2s; animation-duration: 14s; border-color: rgba(79, 172, 254, 0.15); }
+.cube:nth-child(3) { left: 70%; width: 80px; height: 80px; animation-delay: 4s; animation-duration: 18s; }
+.cube:nth-child(4) { left: 85%; width: 45px; height: 45px; animation-delay: 1s; animation-duration: 11s; border-color: rgba(255, 123, 0, 0.08); }
+.cube:nth-child(5) { left: 25%; width: 50px; height: 50px; animation-delay: 6s; animation-duration: 15s; }
+
+@keyframes cube-float {
+    0% { transform: translateY(0) rotate(0deg) scale(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(360deg) scale(1.5); opacity: 0; }
+}
+
+/* GRADIENTES Y DECORACIONES TEXTUALES */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* HEADER / NAVEGACIÓN STICKY */
+header {
+    position: sticky;
+    top: 0;
+    background-color: rgba(10, 15, 29, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    transition: var(--transition-fast);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--primary);
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    transition: var(--transition-fast);
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+nav a:not(.btn-nav)::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition-fast);
+}
+
+nav a:not(.btn-nav):hover { color: var(--text-white); }
+nav a:not(.btn-nav):hover::after { width: 100%; }
+
+.btn-nav {
+    background-color: rgba(37, 211, 102, 0.15);
+    color: var(--whatsapp-color) !important;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(37, 211, 102, 0.3);
+    font-weight: 600 !important;
+}
+
+.btn-nav:hover {
+    background-color: var(--whatsapp-color);
+    color: white !important;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+    transform: translateY(-2px);
+}
+
+/* HERO SECTION */
+.hero {
+    padding: 100px 0 120px 0;
+    position: relative;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.badge {
+    background-color: rgba(0, 242, 254, 0.1);
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 24px;
+    border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+.hero-text h1 {
+    font-family: var(--font-heading);
+    font-size: 3.2rem;
+    line-height: 1.2;
+    font-weight: 900;
+    margin-bottom: 24px;
+}
+
+.hero-text p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 540px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+}
+
+/* BOTONES BIEN DISEÑADOS */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: var(--transition-slow);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #128c7e, var(--whatsapp-color));
+    color: white;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-white);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary);
+    background-color: rgba(0, 242, 254, 0.05);
+    transform: translateY(-4px);
+    color: var(--primary);
+}
+
+/* CONTENEDOR DE EFECTO 3D EN EL HERO */
+.hero-image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tech-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0,242,254,0.3) 0%, rgba(79,172,254,0) 70%);
+    filter: blur(30px);
+    animation: pulse-glow 4s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.3); opacity: 0.9; }
+}
+
+.hero-card {
+    width: 340px;
+    height: 340px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    transform: rotateX(10deg) rotateY(-15deg);
+    transition: var(--transition-slow);
+    animation: floating 6s ease-in-out infinite;
+}
+
+.hero-card:hover {
+    transform: rotateX(0deg) rotateY(0deg) scale(1.05);
+    border-color: var(--primary);
+    box-shadow: 0 40px 80px rgba(0, 242, 254, 0.2);
+}
+
+.main-icon {
+    font-size: 6rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    animation: ring-expand 3s infinite linear;
+    opacity: 0;
+}
+
+@keyframes ring-expand {
+    0% { transform: scale(0.6); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px) rotateX(10deg) rotateY(-15deg); }
+    50% { transform: translateY(-20px) rotateX(12deg) rotateY(-10deg); }
+    100% { transform: translateY(0px) rotateX(10deg) rotateY(-15deg); }
+}
+
+/* SECCIONES COMPARTIDAS */
+.services-section, .maintenance-section {
+    padding: 100px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* TARJETAS CON EFECTO BORDES ILUMINADOS Y RESPLANDOR */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    justify-content: center;
+}
+
+.card-glow {
+    position: relative;
+    border-radius: 20px;
+    background: transparent;
+    padding: 1px;
+    transition: var(--transition-slow);
+}
+
+.card-glow::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    z-index: -1;
+    opacity: 0;
+    transition: var(--transition-fast);
+}
+
+.card-glow:hover::before { opacity: 1; }
+
+.card-glow:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.15);
+}
+
+.grid-cards .card-glow:nth-child(1):hover::before {
+    background: linear-gradient(135deg, var(--accent-orange), #ffb700);
+}
+.grid-cards .card-glow:nth-child(1):hover {
+    box-shadow: 0 20px 40px rgba(255, 123, 0, 0.15);
+}
+
+.card {
+    background-color: var(--bg-surface);
+    border-radius: 19px;
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.icon-orange { background-color: rgba(255, 123, 0, 0.1); color: var(--accent-orange); }
+.icon-blue { background-color: rgba(0, 242, 254, 0.1); color: var(--primary); }
+.card-fa-icon { font-size: 2rem; }
+
+.card h3 { font-size: 1.5rem; margin-bottom: 16px; font-weight: 700; }
+.card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px; flex-grow: 1; }
+
+.card-features { list-style: none; margin-bottom: 32px; }
+.card-features li { font-size: 0.9rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.card-features li i { color: var(--primary); }
+.grid-cards .card-glow:nth-child(1) .card-features li i { color: var(--accent-orange); }
+
+.btn-card {
+    text-decoration: none;
+    color: var(--text-white);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-fast);
+}
+
+.grid-cards .card-glow:nth-child(1) .btn-card:hover { color: var(--accent-orange); }
+.grid-cards .card-glow:nth-child(2) .btn-card:hover { color: var(--primary); }
+.btn-card i { transition: var(--transition-fast); }
+.btn-card:hover i { transform: translateX(6px); }
+
+/* SECCIÓN MANTENIMIENTO */
+.maintenance-section {
+    background-color: var(--bg-surface);
+    border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+.maint-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.maint-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 32px;
+    background-color: var(--bg-card);
+    padding: 24px;
+    border-radius: 16px;
+    transition: var(--transition-fast);
+}
+
+.maint-item:hover {
+    border-color: rgba(0, 242, 254, 0.2);
+    transform: scale(1.02);
+}
+
+.maint-icon { font-size: 1.8rem; color: var(--primary); }
+.maint-text h4 { font-size: 1.2rem; margin-bottom: 8px; font-weight: 600; }
+.maint-text p { color: var(--text-muted); font-size: 0.95rem; }
+
+/* CAJA LLAMADO A LA ACCIÓN (CTA) */
+.cta-box {
+    background: linear-gradient(145deg, #16223f 0%, #0d162b 100%);
+    border: 1px solid rgba(0, 242, 254, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.cta-box h3 { font-size: 1.6rem; margin-bottom: 16px; font-weight: 700; }
+.cta-box p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 32px; }
+
+.btn-whatsapp-big {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--whatsapp-color);
+    color: white;
+    text-decoration: none;
+    padding: 18px 36px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: var(--transition-slow);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp-big:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+}
+
+/* FOOTER */
+footer {
+    padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-social a { color: var(--text-muted); font-size: 1.4rem; transition: var(--transition-fast); }
+.footer-social a:hover { color: var(--whatsapp-color); }
+
+/* BOTÓN FLOTANTE WHATSAPP CON ONDAS EXPANSIVAS */
+.whatsapp-floating {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: var(--whatsapp-color);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.whatsapp-floating:hover { transform: scale(1.1); }
+.whatsapp-floating::after {
+    content: '';
+    position: absolute;
+    width: 100%; height: 100%;
+    border: 2px solid var(--whatsapp-color);
+    border-radius: 50%;
+    top: 0; left: 0;
+    animation: pulse-ring-wa 2s infinite;
+}
+
+@keyframes pulse-ring-wa {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO (MEDIA QUERIES INTEGRADO)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .hero-grid, .maint-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .hero-text p { margin: 0 auto 40px auto; }
+    .hero-actions { justify-content: center; }
+    .hero-image-container { order: -1; }
+    .hero-text h1 { font-size: 2.6rem; }
+}
+
+@media (max-width: 768px) {
+    /* Convierte la barra de navegación en un contenedor vertical centrado */
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        gap: 16px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Centra el título de Chejo Tec */
+    .logo {
+        text-align: center;
+        width: fit-content;
+    }
+
+    /* Ordena los enlaces verticalmente y los centra debajo del logo */
+    nav {
+        flex-direction: row;
+        width: auto;
+        gap: 16px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Estilizado responsivo para los hipervínculos del menú */
+    nav a {
+        font-size: 1rem;
+        display: inline-block;
+        text-align: center;
+        width: auto;
+    }
+
+    /* Centra y dimensiona apropiadamente el botón de contacto en el nav */
+    .btn-nav {
+        width: auto;
+        min-width: 180px;
+        text-align: center;
+        display: inline-block;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-text h1 { font-size: 2.2rem; }
+    .hero-actions { flex-direction: column; gap: 12px; }
+    .btn { width: 100%; justify-content: center; }
+    .whatsapp-floating { bottom: 20px; right: 20px; }
+    .footer-content { flex-direction: column; text-align: center; gap: 15px; }
+}
